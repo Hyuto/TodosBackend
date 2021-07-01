@@ -2,7 +2,7 @@ import requests, argparse
 
 URLS = {
     'dev' : 'http://127.0.0.1:8000/api/',
-    'web' : None
+    'web' : 'https://django-todos-application.herokuapp.com/api/'
 }
 
 def POST(url):
@@ -24,14 +24,15 @@ def POST(url):
         data[item] = input_
     post = requests.post(url, data = data)
 
-    print(f'STATUS   : {post.status_code}')
-    print(f'response : {post.text}')
+    print(f'STATUS     : {post.status_code}')
+    print(f'TIME TAKEN : {post.elapsed.total_seconds()}s')
+    print(f'RESPONSE   : {post.json()}')
 
 def DELETE(url, id):
     delete = requests.delete(url + f'{id}/')
 
-    print(f'STATUS   : {delete.status_code}')
-    print(f'response : {delete.text}')
+    print(f'STATUS     : {delete.status_code}')
+    print(f'TIME TAKEN : {delete.elapsed.total_seconds()}s')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Testing script for the backend")
