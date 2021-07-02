@@ -11,8 +11,24 @@ Endpoint : [https://django-todos-application.herokuapp.com/api/](https://django-
 
 ## Run Server On Local
 
+Update the `DEV_USERNAMES` in the `settings.py` with username on the local computer
+
+```python
+DEV_USERNAMES = [
+    'hyuto',
+    'Wahyu Setianto',
+
+    'NEW-USERNAME'
+]
+
+...
+```
+
+then do migration and run the server 
+
 ```bash
-python manage.py runserver --setting=TodosBackend.local_settings
+python manage.py migrate
+python manage.py runserver
 ```
 
 ## Testing
