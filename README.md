@@ -11,6 +11,12 @@ Endpoint : [https://django-todos-application.herokuapp.com/api/](https://django-
 
 ## Run Server On Local
 
+Install requirements
+
+```bash
+pip install -r local-requirements.txt
+```
+
 Update the `DEV_USERNAMES` in the `settings.py` with username on the local computer
 
 ```python
@@ -28,6 +34,7 @@ then do migration and run the server
 
 ```bash
 python manage.py migrate
+python manage.py createsuperuser # for creating super user
 python manage.py runserver
 ```
 

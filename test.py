@@ -18,8 +18,7 @@ def POST(url):
     required = ["title", "description"]
     for item in data:
         input_ = input(
-            f'*  {item} [{"REQUIRED" if item in required else "OPTIONAL"}] : '
-        )
+            f'*  {item} [{"REQUIRED" if item in required else "OPTIONAL"}] : ')
 
         if input_ == "":
             input_ == None
@@ -42,8 +41,7 @@ def PUT(url, id_):
         if item != 'id':
             input_ = input(
                 f'*  {item} [{"REQUIRED" if item in required else "OPTIONAL"}] '
-                + f'[BEFORE : {data[item]}] : '
-            )
+                + f'[BEFORE : {data[item]}] : ')
 
             if input_ == "":
                 input_ == None
@@ -65,14 +63,16 @@ def DELETE(url, id):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Testing script for the backend"
-    )
-    parser.add_argument(
-        "-u", "--url", help="Url / endpoint", type=str, required=True
-    )
-    parser.add_argument(
-        "-p", "--post", help="Post to Endpoint", action="store_true"
-    )
+        description="Testing script for the backend")
+    parser.add_argument("-u",
+                        "--url",
+                        help="Url / endpoint",
+                        type=str,
+                        required=True)
+    parser.add_argument("-p",
+                        "--post",
+                        help="Post to Endpoint",
+                        action="store_true")
     parser.add_argument("-t", "--put", help="Put to Endpoint", type=str)
     parser.add_argument("-d", "--delete", help="Post to Endpoint", type=str)
     args = parser.parse_args()

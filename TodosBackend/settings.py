@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "SECRET-KEY"
 DEV_USERNAMES = ["hyuto", "Wahyu Setianto"]
 DEBUG = True if getpass.getuser() in DEV_USERNAMES else False
-ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost", ".herokuapp.com"]
+ALLOWED_HOSTS = (["*"] if DEBUG else
+                 ["0.0.0.0", "127.0.0.1", "localhost", ".herokuapp.com"])
 
 # Application definition
 
@@ -92,16 +93,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
