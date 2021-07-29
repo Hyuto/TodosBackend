@@ -5,7 +5,8 @@
 [![djangorestframework](https://img.shields.io/badge/djangorestframework-3.12-blue?style=plastic)](https://www.django-rest-framework.org/)
 [![Heroku](https://img.shields.io/badge/Heroku-430098?style=plastic&logo=heroku)](https://django-todos-application.herokuapp.com/api/)
 
-Django To - Dos Application API. Created using `django` and `djangorestframework` and deployed to Heroku.
+Django To - Dos Application API. Created using `django` and `djangorestframework` 
+and deployed to Heroku.
 
 Endpoint : [https://django-todos-application.herokuapp.com/api/](https://django-todos-application.herokuapp.com/api/)
 
@@ -54,3 +55,7 @@ optional arguments:
   -d DELETE, --delete DELETE
                         Post to Endpoint
 ```
+
+## To Do
+
+1. Make authentication using `JWT`
