@@ -41,7 +41,7 @@ python manage.py runserver
 
 ## Testing
 
-`test.py` for make request testing.
+`test/test.py` for make request testing.
 
 ```
 usage: test.py [-h] -u URL [-p] [-d DELETE]

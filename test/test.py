@@ -6,6 +6,21 @@ URLS = {
 }
 
 
+def AUTH(url):
+    data = {"username": None, "password": None}
+
+    print("Please enter following field :")
+    for item in data:
+        input_ = input(f'*  {item} : ')
+        data[item] = input_
+
+    post = requests.post(url, data=data)
+
+    print(f"STATUS     : {post.status_code}")
+    print(f"TIME TAKEN : {post.elapsed.total_seconds()}s")
+    print(f"RESPONSE   : {post.json()}")
+
+
 def POST(url):
     data = {
         "title": None,
@@ -69,6 +84,10 @@ if __name__ == "__main__":
                         help="Url / endpoint",
                         type=str,
                         required=True)
+    parser.add_argument("-a",
+                        "--auth",
+                        help="Authentication",
+                        action="store_true")
     parser.add_argument("-p",
                         "--post",
                         help="Post to Endpoint",
@@ -79,6 +98,9 @@ if __name__ == "__main__":
 
     if args.url in URLS:
         args.url = URLS[args.url]
+
+    if args.auth:
+        AUTH(args.url)
 
     if args.post:
         POST(args.url)
