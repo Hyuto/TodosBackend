@@ -41,17 +41,21 @@ python manage.py runserver
 
 ## Testing
 
-`test/test.py` for make request testing.
+`test/test-api.py` for make request testing.
 
 ```
-usage: test.py [-h] -u URL [-p] [-d DELETE]
+usage: test-api.py [-h] -u URL [-l] [-r] [-g] [-p] [-t PUT] [-d DELETE]
 
 Testing script for the backend
 
 optional arguments:
   -h, --help            show this help message and exit
   -u URL, --url URL     Url / endpoint
+  -l, --login           Login
+  -r, --register        Register
+  -g, --get             GET
   -p, --post            Post to Endpoint
+  -t PUT, --put PUT     Put to Endpoint
   -d DELETE, --delete DELETE
                         Post to Endpoint
 ```
