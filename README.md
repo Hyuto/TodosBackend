@@ -62,4 +62,4 @@ optional arguments:
 
 ## To Do
 
-1. Make authentication using `JWT`
+1. Create custom `user` model.

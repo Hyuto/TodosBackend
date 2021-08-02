@@ -122,6 +122,11 @@ def POST(url, token):
             input_ == None
 
         data[item] = input_
+
+    data['user'] = jwt.decode(token,
+                              options={"verify_signature": False},
+                              algorithms=["HS256"])['user_id']
+
     post = requests.post(url,
                          data=data,
                          headers={'Authorization': f'Bearer {token}'})
@@ -146,7 +151,7 @@ def PUT(url, id_, token):
     print("Please enter following field :")
     required = ["title", "description"]
     for item in data:
-        if item != 'id':
+        if item not in ['id', 'user']:
             input_ = input(
                 f'*  {item} [{"REQUIRED" if item in required else "OPTIONAL"}] '
                 + f'[BEFORE : {data[item]}] : ')
