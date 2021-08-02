@@ -62,4 +62,4 @@ optional arguments:
 
 ## To Do
 
-1. Create custom `user` model.
+1. Add login via Google support.

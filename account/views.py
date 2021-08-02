@@ -1,7 +1,6 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import RegisterSerializer
-from django.contrib.auth.models import User
 
 
 # Register API
