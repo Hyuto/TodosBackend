@@ -18,11 +18,14 @@ class AUTH(object):
         parsing = urlparse(url)
         self.url = url
         self.regis_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/register/'
-        self.token_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/token/'
-        self.refresh_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/token/refresh/'
+        self.logout_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/logout/'
+        self.token_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/login/'
+        self.refresh_url = f'{parsing.scheme}://' + parsing.netloc + '/auth/login/refresh/'
 
         if status == 'register':
             self.register()
+        elif status == 'logout':
+            self.logout()
         elif os.path.isfile(self.auth_file_path) and status != 'login':
             logging.info('Using past auth config')
             with open(self.auth_file_path) as f:
@@ -47,6 +50,23 @@ class AUTH(object):
     def _write_auth(self):
         with open(self.auth_file_path, "w") as outfile:
             json.dump(self.auth, outfile)
+
+    def logout(self):
+        logging.info('Logging out')
+        if os.path.isfile(self.auth_file_path):
+            with open(self.auth_file_path) as f:
+                self.auth = json.load(f)
+
+            post = requests.post(
+                self.logout_url,
+                data={'refresh': self.auth['refresh']},
+                headers={'Authorization': f'Bearer {self.auth["access"]}'})
+            print(f"STATUS     : {post.status_code}")
+            print(f"RESPONSE   : {json.dumps(post.json(), indent=3)}")
+
+            os.remove(self.auth_file_path)
+        else:
+            raise OSError('No auth file detected!')
 
     def register(self):
         data = {
@@ -192,6 +212,7 @@ if __name__ == "__main__":
                         "--register",
                         help="Register",
                         action="store_true")
+    parser.add_argument("-q", "--logout", help="Logout", action="store_true")
     parser.add_argument("-g", "--get", help="GET", action="store_true")
     parser.add_argument("-p",
                         "--post",
@@ -211,6 +232,8 @@ if __name__ == "__main__":
         auth_type = 'login'
     elif args.register:
         auth_type = 'register'
+    elif args.logout:
+        auth_type = 'logout'
     else:
         auth_type = 'from file'
 
